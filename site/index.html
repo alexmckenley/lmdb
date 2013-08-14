@@ -20,6 +20,18 @@
 			<button class="delete">Delete</button>
 		</div>
 		
+		
+		<script id="movieTemplate" type="text/template">
+			<img src="<%= poster %>"/>
+			<ul>
+				<li><%= title %></li>
+				<li><%= year %></li>
+				<li><%= poster %></li>
+			</ul>
+			<button class="delete">Delete</button>
+		</script>
+		
+		
         <script src="js/lib/jquery.min.js"></script>
         <script src="js/lib/underscore-min.js"></script>
         <script src="js/lib/backbone-min.js"></script>
