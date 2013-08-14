@@ -119,6 +119,8 @@ app.delete( "/movies/:id", function(request, response){
 	});
 });
 
+
+//This adds a new movie each time the program is ran
 var test = new MovieModel({
 		title: "This is a Movie Title",
 		year: "1997",
