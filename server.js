@@ -99,9 +99,13 @@ app.put("/movies/:id", function(request, response){
 			} else {
 				console.log(err);
 			}
+			return response.send(book);
 		});
 	});
 });
+
+//Delete a book
+
 
 
 
