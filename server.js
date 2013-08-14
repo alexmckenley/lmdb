@@ -74,6 +74,56 @@ app.post("/movies", function(request, response){
 	return response.send(movie);
 });
 
+//Get movie by ID
+app.get("/movies/:id", function(request, response){
+	return MovieModel.findByID(request.params.id, function( err, movie){
+		if (!err){
+			return response.send(movie);
+		}else {
+			return console.log( err );
+		}
+	});
+});
+
+//Update a book
+app.put("/movies/:id", function(request, response){
+	console.log("updating movie " + request.body.title);
+	return MovieModel.findById(request.params.id, function(err, movie){
+		movie.title = request.body.title;
+		movie.year = request.body.year;
+		movie.poster = request.body.poster;
+		
+		return movie.save(function (err){
+			if (!err){
+				console.log(movie.title + " successfully updated");
+			} else {
+				console.log(err);
+			}
+		});
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
