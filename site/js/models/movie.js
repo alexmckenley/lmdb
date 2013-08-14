@@ -1,4 +1,4 @@
-// site/js/models/movie.js
+// site/js/models/Movie.js
 
 var app = app || {};
 

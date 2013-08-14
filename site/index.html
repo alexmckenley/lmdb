@@ -8,37 +8,27 @@
     <body>
 		<h1>Test Site Operational</h1>
 	
-		<div class="bookContainer">
-			<img src="img/placeholder.png"/>
-			<ul>
-				<li>Title</li>
-				<li>Author</li>
-				<li>Release Date</li>
-				<li>Keywords</li>
-			</ul>
-
-			<button class="delete">Delete</button>
+		<div id="movies">
 		</div>
 		
 		
-		<script id="movieTemplate" type="text/template">
+		
+		<script id="movieListEntry" type="text/template">
 			<img src="<%= poster %>"/>
 			<ul>
-				<li><%= title %></li>
+				<li><strong><%= title %></strong></li>
 				<li><%= year %></li>
 				<li><%= poster %></li>
 			</ul>
 			<button class="delete">Delete</button>
-		</script>
-		
-		
+		</script>		
         <script src="js/lib/jquery.min.js"></script>
         <script src="js/lib/underscore-min.js"></script>
         <script src="js/lib/backbone-min.js"></script>
-        <script src="js/models/movie.js"></script>
-        <script src="js/collections/movielist.js"></script>
-        <script src="js/views/movie.js"></script>
-        <script src="js/views/movielist.js"></script>
+        <script src="js/models/Movie.js"></script>
+        <script src="js/collections/MovieList.js"></script>
+        <script src="js/views/MovieListEntryView.js"></script>
+        <script src="js/views/MovieListView.js"></script>
         <script src="js/app.js"></script>
     </body>
 </html>

@@ -1,0 +1,8 @@
+.movieListEntry {
+	float: left;
+	margin: 1px;
+}
+.movieListEntry ul{
+	padding: 0;
+	list-style: none;
+}
