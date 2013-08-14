@@ -99,14 +99,32 @@ app.put("/movies/:id", function(request, response){
 			} else {
 				console.log(err);
 			}
-			return response.send(book);
+			return response.send(movie);
 		});
 	});
 });
 
 //Delete a book
+app.delete( "/movies/:id", function(request, response){
+	console.log("deleting movie with id: " + request.params.id );
+	return MovieModel.findById( request.params.id, function(err, movie){
+		return movie.remove(function(err){
+			if (!err){
+				console.log("Book removed");
+				return response.send("");
+			}else{
+				console.log(err);
+			}
+		});
+	});
+});
 
-
+var test = new MovieModel({
+		title: "This is a Movie Title",
+		year: "1997",
+		poster: "http://sobr.co/s.svg"
+	});
+test.save();
 
 
 
