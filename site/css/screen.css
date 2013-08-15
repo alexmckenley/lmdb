@@ -1,8 +1,11 @@
 .movieListEntry {
 	margin: 1px;
 	border: 2px solid;
-	border-color: red;
+	border-color: #869672;
 	overflow: auto;
+}
+.movieListEntry:hover{
+	background-color: #E9FFCC;
 }
 .movieListEntry img{
 	float: left;
