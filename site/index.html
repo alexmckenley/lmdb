@@ -6,21 +6,28 @@
         <link rel="stylesheet" href="css/screen.css">
     </head>
     <body>
-		<h1>Test Site Operational</h1>
-	
-		<div id="movies">
+		<div id="header">
+			<h1>Local Movie Database</h1>
 		</div>
-		
+	
+		<div id="main">
+			<div id="movies">
+			</div>
+			<div id="rightside">
+			<p>Right Side div.</p>
+			</div>
+		</div>
 		
 		
 		<script id="movieListEntry" type="text/template">
 			<img src="<%= poster %>"/>
+			<button class="delete">Delete</button>
 			<ul>
 				<li><strong><%= title %></strong></li>
 				<li><%= year %></li>
 				<li><%= poster %></li>
 			</ul>
-			<button class="delete">Delete</button>
+			
 		</script>		
         <script src="js/lib/jquery.min.js"></script>
         <script src="js/lib/underscore-min.js"></script>

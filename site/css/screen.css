@@ -1,8 +1,60 @@
 .movieListEntry {
-	float: left;
 	margin: 1px;
+	border: 2px solid;
+	border-color: red;
+	overflow: auto;
+}
+.movieListEntry img{
+	float: left;
+	width: 50px;
 }
 .movieListEntry ul{
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
+	padding: 0px;
 	list-style: none;
 }
+.movieListEntry button{
+	float: right;
+}
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+}	
+
+#header{
+	height: 75px;
+	margin: 0px;
+	padding: 0px;
+}
+#header h1{
+	text-align: center;
+	margin-top: 15px;
+}
+#main{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 75px;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+
+}
+#movies{
+	float: left;
+	width: 50%;
+	height: 100%;
+	overflow-y: scroll;
+}
+#rightside{
+	float: right;
+	width: 50%;
+	height: 100%;
+	overflow-y: auto;
+}
+#rightside p{
+	text-align: center;
+}
+
