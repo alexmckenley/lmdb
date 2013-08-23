@@ -1,11 +1,29 @@
+#rightside img{
+	width: 200px;
+	float: right;
+}
+#rightside ul{
+	margin: 0px;
+	padding: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#rightside button {
+	float: right;
+	clear: both;
+}
+
 .movieListEntry {
-	margin: 1px;
+	margin-top: 0px;
 	border: 2px solid;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
 	border-color: #869672;
 	overflow: auto;
 }
 .movieListEntry:hover{
-	background-color: #E9FFCC;
+	background-color: #869672;
 }
 .movieListEntry img{
 	float: left;
@@ -21,6 +39,7 @@
 	float: right;
 }
 body{
+	background-color: #F3FCE7;
 	margin: 0px;
 	padding: 0px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -35,14 +54,26 @@ body{
 	text-align: center;
 	margin-top: 15px;
 }
-#main{
+#outer{
+
+	width: 100%;
 	margin: 0;
 	padding: 0;
 	position: absolute;
 	top: 75px;
 	left: 0px;
 	bottom: 0px;
-	width: 100%;
+}
+#main{
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+	margin: 0px auto;
+	padding: 0px;
+	border: 1px solid;
+	border-color: black;
+	max-width: 900px;
+	height: 100%;
 
 }
 #movies{
@@ -51,11 +82,18 @@ body{
 	height: 100%;
 	overflow-y: scroll;
 }
+#movies > div:first-of-type{
+	border-top-width: 2px;
+}
+#movies > div:last-of-type{
+	border-bottom-width: 2px;
+}
 #rightside{
 	float: right;
 	width: 50%;
 	height: 100%;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 #rightside p{
 	text-align: center;

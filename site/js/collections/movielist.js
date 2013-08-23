@@ -3,5 +3,6 @@
 var app = app || {};
 
 app.MovieList = Backbone.Collection.extend({
-    model: app.Movie
+    model: app.Movie,
+	url: '/movies'
 });

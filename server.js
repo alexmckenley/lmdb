@@ -126,7 +126,7 @@ var test = new MovieModel({
 		year: "1997",
 		poster: "http://sobr.co/s.svg"
 	});
-test.save();
+//test.save();
 
 
 

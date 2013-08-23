@@ -2,19 +2,20 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
-        <title>Backbone.js Library</title>
+        <title>Local Movie DB</title>
         <link rel="stylesheet" href="css/screen.css">
     </head>
     <body>
 		<div id="header">
 			<h1>Local Movie Database</h1>
 		</div>
-	
-		<div id="main">
-			<div id="movies">
-			</div>
-			<div id="rightside">
-			<p>Right Side div.</p>
+		<div id="outer">
+			<div id="main">
+				<div id="movies">
+				</div>
+				<div id="rightside">
+				<p>Please select a movie from the list.<br><------------</p>
+				</div>
 			</div>
 		</div>
 		
@@ -25,8 +26,17 @@
 			<ul>
 				<li><strong><%= title %></strong></li>
 				<li><%= year %></li>
-				<li><%= poster %></li>
 			</ul>
+			
+		</script>
+		<script id="movieDisplay" type="text/template">
+			<img src="<%= poster %>"/>
+			
+			<ul>
+				<li><strong><%= title %></strong></li>
+				<li><%= year %></li>
+			</ul>
+			<button class="delete">Edit</button>
 			
 		</script>		
         <script src="js/lib/jquery.min.js"></script>
@@ -36,6 +46,7 @@
         <script src="js/collections/MovieList.js"></script>
         <script src="js/views/MovieListEntryView.js"></script>
         <script src="js/views/MovieListView.js"></script>
+		<script src="js/views/MovieDisplayView.js"></script>
         <script src="js/app.js"></script>
     </body>
 </html>

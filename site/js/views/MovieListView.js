@@ -5,10 +5,14 @@ var app = app || {};
 app.MovieListView = Backbone.View.extend({
 	el: '#movies',
 	
-	initialize: function (initialMovies){
-		this.collection = new app.MovieList(initialMovies);
+	initialize: function (){
+		this.collection = new app.MovieList();
+		this.collection.fetch({reset: true});
 		this.render();
 		//console.log("MLV");
+		
+		this.listenTo( this.collection, 'add', this.renderMovieListEntry );
+		this.listenTo( this.collection, 'reset', this.render );
 	},
 	
 	render: function() {
