@@ -40,7 +40,7 @@ app.configure( function() {
 });
 
 //Start Server
-var port = 9000;
+var port = 80;
 app.listen( port, function(){
 	console.log( "Express server listening on port " + port + " in " + app.settings.env );
 });
@@ -85,7 +85,7 @@ app.get("/movies/:id", function(request, response){
 	});
 });
 
-//Update a book
+//Update a movie
 app.put("/movies/:id", function(request, response){
 	console.log("updating movie " + request.body.title);
 	return MovieModel.findById(request.params.id, function(err, movie){
@@ -104,7 +104,7 @@ app.put("/movies/:id", function(request, response){
 	});
 });
 
-//Delete a book
+//Delete a movie
 app.delete( "/movies/:id", function(request, response){
 	console.log("deleting movie with id: " + request.params.id );
 	return MovieModel.findById( request.params.id, function(err, movie){
