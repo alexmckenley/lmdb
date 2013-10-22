@@ -1,8 +1,6 @@
-var app = app || {};
-
 
 ///// MODELS /////
-app.Movie = Backbone.Model.extend({
+window.Movie = Backbone.Model.extend({
 	defaults: {
 		poster: "img/placeholder.png",
 		title: "No title",
@@ -13,9 +11,8 @@ app.Movie = Backbone.Model.extend({
 
 
 ///// COLLECTIONS /////
-var app = app || {};
 
-app.MovieList = Backbone.Collection.extend({
+window.MovieList = Backbone.Collection.extend({
     model: app.Movie,
 	url: '/movies'
 });
@@ -23,7 +20,7 @@ app.MovieList = Backbone.Collection.extend({
 
 
 ///// VIEWS /////
-app.MovieDisplayView = Backbone.View.extend({
+window.MovieDisplayView = Backbone.View.extend({
 	el: '#rightside',
 	template: _.template($('#movieDisplay').html()),
 	initialize: function (){
@@ -48,7 +45,7 @@ app.MovieDisplayView = Backbone.View.extend({
 	
 });
 
-app.MovieListEntryView = Backbone.View.extend({
+window.MovieListEntryView = Backbone.View.extend({
 	tagName: 'div',
 	className: 'movieListEntry',
 	template: _.template($('#movieListEntry').html()),
@@ -64,7 +61,7 @@ app.MovieListEntryView = Backbone.View.extend({
 	}
 });
 
-app.MovieListView = Backbone.View.extend({
+window.MovieListView = Backbone.View.extend({
 	el: '#movies',
 	
 	initialize: function (){
