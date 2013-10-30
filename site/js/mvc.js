@@ -13,7 +13,7 @@ window.Movie = Backbone.Model.extend({
 ///// COLLECTIONS /////
 
 window.MovieList = Backbone.Collection.extend({
-    model: app.Movie,
+  model: Movie,
 	url: '/movies'
 });
 

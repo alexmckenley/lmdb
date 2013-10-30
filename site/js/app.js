@@ -4,6 +4,15 @@
 // 	console.log("Started");
 // });
 
+var App = new Backbone.Marionette.Application();
+App.on('start', function(options) { 
+  App.addRegions({ 
+    main: "#app",
+    rightside: '#rightside'
+  });
+  Backbone.history.start();
+});
+
 var TodoApp = new (Backbone.Router.extend({
   routes: { "": "index",
   		    "movies/:id": "show" }, // This route does not work at all yet
@@ -25,6 +34,6 @@ var TodoApp = new (Backbone.Router.extend({
 }));
 
 $(document).ready(function(){
-	TodoApp.start();
+	App.start();
 	console.log("Started");
 });
