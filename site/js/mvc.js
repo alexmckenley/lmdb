@@ -21,13 +21,14 @@ App.MovieList = Backbone.Collection.extend({
 
 ///// VIEWS /////
 App.MovieListEntryView = Backbone.Marionette.ItemView.extend({
-	el: '#main',
+	tagName: 'div',
 	className: 'movieListEntry',
 	template: '#movieListEntry'
 });
 
 App.MovieListView = Backbone.Marionette.CompositeView.extend({
-	el: '#main',
+	tagName: 'div',
+	template: '#movieList',
 	itemView: App.MovieListEntryView
 	// appendHtml: function(collectionView, itemView) {
 	// 	collectionView.$("#app").append(itemView.el);
