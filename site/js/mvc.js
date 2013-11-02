@@ -1,3 +1,5 @@
+var App = App || new Backbone.Marionette.Application();
+
 ///// MODELS /////
 App.Movie = Backbone.Model.extend({
 	defaults: {
@@ -11,7 +13,7 @@ App.Movie = Backbone.Model.extend({
 
 ///// COLLECTIONS /////
 App.MovieList = Backbone.Collection.extend({
-	model: Movie,
+	model: App.Movie,
 	url: '/movies'
 });
 
@@ -19,15 +21,15 @@ App.MovieList = Backbone.Collection.extend({
 
 ///// VIEWS /////
 App.MovieListEntryView = Backbone.Marionette.ItemView.extend({
-	tagName: 'div',
+	el: '#main',
 	className: 'movieListEntry',
 	template: '#movieListEntry'
 });
 
 App.MovieListView = Backbone.Marionette.CompositeView.extend({
 	el: '#main',
-	itemView: App.MovieListEntryView,
-	appendHtml: function(collectionView, itemView) {
-		collectionView.$("#app").append(itemView.el);
-	}
+	itemView: App.MovieListEntryView
+	// appendHtml: function(collectionView, itemView) {
+	// 	collectionView.$("#app").append(itemView.el);
+	// }
 });
