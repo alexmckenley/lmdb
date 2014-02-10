@@ -1,5 +1,8 @@
 .movie{
   min-height: 60px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
 }
 
 .movie:hover{
@@ -7,6 +10,7 @@
 }
 
 .movie .title{
+  padding-left: 10px;
   font-size: 2em;
   color: #335533;
 }
@@ -14,6 +18,15 @@
 .movie .title .year{
   font-size: .75em;
   color: #335533;
+}
+
+.movie img{
+  float: left;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .navbar-brand{

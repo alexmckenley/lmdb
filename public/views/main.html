@@ -1,10 +1,13 @@
 <h2 class="viewTitle">Movies</h2>
 
-<div class="movie" ng-repeat="movie in movies" ng-click="setTheOne(movie)" >
-  <p class="title">{{ movie.title }} <span class="year">({{ movie.release_date.substr(0,4) }})</span> </p>
-  <button >Hello</button>
+<div class="movie clearfix" ng-repeat="movie in movies" ng-click="setTheOne(movie)" >
+  <div ng-if="theOne !== movie">
+    <p class="title">{{ movie.title }} <span class="year">({{ movie.release_date.substr(0,4) }})</span> </p>
+  </div>
   <div ng-if="theOne === movie">
-    I AM THE ONE!
+    <p class="title">{{ movie.title }} <span class="year">({{ movie.release_date.substr(0,4) }})</span> </p>
+    <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185{{movie.poster_path}}"></img>
+    <p class="releaseDate">Release Date: {{ movie.release_date }}</p>
   </div>
 <!--   <span class="year">{{ movie.year }}</span> -->
 </div>

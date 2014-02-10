@@ -36,6 +36,10 @@ angular.module('lmdbApp', ['ngRoute'])
     });
 
     $scope.setTheOne = function(movie){
+      if ($scope.theOne === movie){
+        $scope.theOne = null;
+        return;
+      }
       console.log("ThE ONE", movie);
       $scope.theOne = movie;
     };
