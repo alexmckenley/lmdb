@@ -4,15 +4,31 @@ angular.module('testApp', ['ngRoute'])
     $locationProvider.html5Mode(true);
     $routeProvider
 
-      .when('/', {
-        templateUrl: '/views/main.html',
-        controller: 'MainController'
-      })
-      .when('/404', {
-        templateUrl: '/views/404.html'
-      })
-      .otherwise({
-        templateUrl: '/views/main.html',
-        controller: 'MainController'
+    .when('/', {
+      templateUrl: '/views/main.html',
+      controller: 'MainController'
+    })
+    .when('/404', {
+      templateUrl: '/views/404.html'
+    })
+    .otherwise({
+      templateUrl: '/views/main.html',
+      controller: 'MainController'
+    });
+  })
+  .service("MovieService", function($http){
+    this.getMovies = function(){
+      return $http({
+        method: 'GET',
+        url: '/movies'
       });
+    };
+  })
+  .controller("FrameController", function($scope){
+
+  })
+  .controller("MoviesController", function($scope, MovieService){
+    MovieService.getMovies().success(function(movies){
+      $scope.movies = movies;
+    });
   });
