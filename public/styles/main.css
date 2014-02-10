@@ -1,8 +1,24 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.movie:hover{
+  background-color: #88cc99;
 }
 
-a {
-  color: #00B7FF;
+.movie .title{
+  font-size: 2em;
+  color: #335533;
+}
+
+.movie .year{
+ 
+}
+
+.navbar-brand{
+  color: #669977;
+}
+
+.navbar-text{
+  color: #335533;
+}
+
+.viewTitle{
+  color: #88cc99;
 }

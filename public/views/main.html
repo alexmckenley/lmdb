@@ -1,4 +1,6 @@
-<div ng-repeat="movie in movies">
-  <h2>{{ movie.title }}</h2>
-  <span>{{ movie.year }}</span>
+<h2 class="viewTitle">Movies</h2>
+
+<div class="movie" ng-repeat="movie in movies">
+  <h3 class="title">{{ movie.title }}</h3>
+  <span class="year">{{ movie.year }}</span>
 </div>
