@@ -16,6 +16,14 @@ angular.module('lmdbApp', ['ngRoute'])
       controller: 'MainController'
     });
   })
+
+  //Moment Filter
+  .filter('releaseDate', function(){
+    return function(date) {
+      return moment(date).format("MMMM Do YYYY");
+    };
+  })
+
   .service("MovieService", function($http){
     this.getMovies = function(){
       return $http({
