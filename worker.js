@@ -8,12 +8,12 @@ params = {
   api_key: apiKey,
 };
 var movies = [
-  // "300",
-  // "Star Wars",
-  // "The Matrix",
-  // "The Great Mouse Detective",
-  // "fdjksal;",
-  // "District 9",
+  "300",
+  "Star Wars",
+  "The Matrix",
+  "The Great Mouse Detective",
+  "fdjksal;",
+  "District 9",
   "Cast Away"
 ];
 
@@ -25,7 +25,7 @@ var next = function(){
       console.log(url);
 
       request.get(url, function(err, res, data){
-        if(!err){
+        if(!err && data.results.length > 1){
           data = JSON.parse(data);
           var temp = data.results[0];
 
@@ -34,6 +34,8 @@ var next = function(){
             console.log("Post Completed Successfully: ", d);
           });
           console.dir(temp);
+        } else {
+          console.log("there were error, or no results", err);
         }
       });
 
