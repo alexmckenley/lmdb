@@ -1,3 +1,7 @@
+.movie{
+  height: 60px;
+}
+
 .movie:hover{
   background-color: #88cc99;
 }

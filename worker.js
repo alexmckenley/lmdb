@@ -12,7 +12,7 @@ var movies = [
   "Star Wars",
   "The Matrix",
   "The Great Mouse Detective",
-  "fdjksal;",
+  // "fdjksal;",
   "District 9",
   "Cast Away"
 ];
@@ -25,17 +25,22 @@ var next = function(){
       console.log(url);
 
       request.get(url, function(err, res, data){
-        if(!err && data.results.length > 1){
+        if(!err){
           data = JSON.parse(data);
-          var temp = data.results[0];
+          if(data.results && data.results.length >= 1){
+            var temp = data.results[0];
 
-          temp['tmdb_id'] = temp.id;
-          request.post('http://localhost:3000/movies', {form: temp}, function(err, res, d){
-            console.log("Post Completed Successfully: ", d);
-          });
-          console.dir(temp);
+            temp['tmdb_id'] = temp.id;
+            temp.filename = params.query;
+            request.post('http://localhost:3000/movies', {form: temp}, function(err, res, d){
+              console.log("Movie Created Successfully: ", JSON.parse(d).title);
+            });
+            console.log("Found: ", temp.title);
+          } else {
+            console.log("there were no results", res);
+          }
         } else {
-          console.log("there were error, or no results", err);
+          console.log("ERR: ", err);
         }
       });
 

@@ -22,6 +22,7 @@ var Movie = mongoose.model('Movie', {
   title: String, //'District 9',
   vote_average: Number, //6.7,
   vote_count: Number, //746 }
+  filename: String
 });
 
 var app = express();
@@ -49,7 +50,7 @@ app.get('/movies', function(req, res){
 });
 
 app.post('/movies', function(req, res){
-  console.log(req.body);
+  // console.log(req.body);
   var mov = new Movie(req.body);
   mov.save(function(err){
     if(err){
