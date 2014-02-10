@@ -28,8 +28,16 @@ angular.module('lmdbApp', ['ngRoute'])
 
   })
   .controller("MoviesController", function($scope, MovieService){
+    $scope.theOne = null;
+
     MovieService.getMovies().success(function(movies){
       $scope.movies = movies;
       console.log($scope.movies);
     });
+
+    $scope.setTheOne = function(movie){
+      console.log("ThE ONE", movie);
+      $scope.theOne = movie;
+    };
+
   });

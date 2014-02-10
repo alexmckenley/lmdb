@@ -1,5 +1,5 @@
 .movie{
-  height: 60px;
+  min-height: 60px;
 }
 
 .movie:hover{
@@ -11,8 +11,9 @@
   color: #335533;
 }
 
-.movie .year{
- 
+.movie .title .year{
+  font-size: .75em;
+  color: #335533;
 }
 
 .navbar-brand{
