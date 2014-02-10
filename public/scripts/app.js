@@ -7,5 +7,12 @@ angular.module('testApp', ['ngRoute'])
       .when('/', {
         templateUrl: '/views/main.html',
         controller: 'MainController'
+      })
+      .when('/404', {
+        templateUrl: '/views/404.html'
+      })
+      .otherwise({
+        templateUrl: '/views/main.html',
+        controller: 'MainController'
       });
   });

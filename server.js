@@ -23,6 +23,15 @@ app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
+app.get('/movies', function(req, res){
+  res.send({hello: "world"});
+});
+
+app.get('*', routes.index);
+
+
+
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
