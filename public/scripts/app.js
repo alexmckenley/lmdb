@@ -1,4 +1,4 @@
-angular.module('testApp', ['ngRoute'])
+angular.module('lmdbApp', ['ngRoute'])
 
   .config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -6,7 +6,7 @@ angular.module('testApp', ['ngRoute'])
 
     .when('/', {
       templateUrl: '/views/main.html',
-      controller: 'MainController'
+      controller: 'MoviesController'
     })
     .when('/404', {
       templateUrl: '/views/404.html'
@@ -30,5 +30,6 @@ angular.module('testApp', ['ngRoute'])
   .controller("MoviesController", function($scope, MovieService){
     MovieService.getMovies().success(function(movies){
       $scope.movies = movies;
+      console.log($scope.movies);
     });
   });
