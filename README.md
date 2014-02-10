@@ -1,4 +1,3 @@
-lmdb
-====
-
-Local Movie Database
+LMDB
+======================
+the Local Movie Database
