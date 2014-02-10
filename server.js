@@ -40,10 +40,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
 app.get('/movies', function(req, res){
-  res.send([
-    {title: "world", year: 1990},
-    {title: "Star Wars", year: 1985}
-  ]);
+  Movie.find(function(err, data){
+    if(err){
+      console.log("Error:", err);
+    }
+    res.send(data);
+  });
 });
 
 app.post('/movies', function(req, res){
