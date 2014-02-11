@@ -3,8 +3,12 @@ LMDB
 the Local Movie Database
 
 TODO:
-- [] Movie Sorting
+- [x] Movie Sorting
 - [x] Fetching movies from TMDB 
-- [] Create expanded movie view (on click)
+- [x] Create expanded movie view (on click)
 - [] Create worker to read all Movie names
-- [] Implement movie store database
+- [x] Implement movie store database
+- [] Change background image with movie splash
+- [] Integrate with rottentomatoes API
+- [] Complete file updating/renaming
+- [] view trailer link
