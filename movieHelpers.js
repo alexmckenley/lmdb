@@ -28,6 +28,21 @@ var Movie = mongoose.model('Movie', {
   date_added: Date
 });
 
+exports.getMovie = function(id){
+  var d = Q.defer();
+
+  Movie.findById(id, function(err, data){
+    if(err){
+      console.log("Error:", err);
+      d.reject(err);
+      return;
+    }
+    d.resolve(data);
+  });
+
+  return d.promise;
+};
+
 exports.getMovies = function() {
   var d = Q.defer();
 
@@ -83,9 +98,32 @@ exports.updateMovie = function(id, movie){
   return d.promise;
 };
 
-exports.scrapeMovie = function(id){
+exports.rescrapeMovie = function(id){
+  var d = Q.defer();
 
+  params.query = ;
+  url = path + "?" + qs.stringify(params);
+  console.log(url);
+
+  request.get(url, function(err, res, data){
+
+  });
+
+
+  return d.promise;
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
