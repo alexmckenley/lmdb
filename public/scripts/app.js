@@ -165,6 +165,7 @@ angular.module('lmdbApp', ['ngRoute'])
           angular.extend(movie, updatedMovie);
           MovieService.getMovieDetails(movie.tmdb_id).success(function (info) {
             angular.extend($scope.details, info);
+            $scope.setBackground(movie);
             $scope.loading = false;
             $scope.edit = false;
             SpinnerService.stop();
