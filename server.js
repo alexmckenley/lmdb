@@ -62,6 +62,23 @@ app.post('/movies', function(req, res){
   res.send(req.body);
 });
 
+app.put('/movies/:id', function(req, res){
+  console.log(req.body);
+  var mov = Movie.findById(req.params.id, function(err, model){
+    if(err){
+
+    } else {
+      model.filename = req.body.filename;
+      model.save(function(err){
+        if(err){
+          console.log("error saving model");
+        }
+        res.send(model);
+      });
+    }
+  });
+});
+
 app.get('*', routes.index);
 
 

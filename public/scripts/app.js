@@ -42,7 +42,15 @@ angular.module('lmdbApp', ['ngRoute'])
     this.updateMovie = function(movie){
       return $http({
         method: 'PUT',
-        url: '/movies/' + movie.tmdb.id
+        url: '/movies/' + movie._id,
+        data: movie
+      });
+    };
+
+    this.refreshMovieData = function(movie){
+      return $http({
+        method: 'GET',
+        url: '/movies/' + movie._id + "/update/"
       });
     };
   })
@@ -88,9 +96,9 @@ angular.module('lmdbApp', ['ngRoute'])
     };
 
     $scope.updateInfo = function(movie){
-      console.log("update Info");
-      // angular.extend(movie, $source.update);
-      // console.log(movie);
+      MovieService.updateMovie(movie).success(function(data){
+        console.log("successfully updated: ", data);
+      });
     };
 
   });
