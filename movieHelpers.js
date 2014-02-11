@@ -108,14 +108,14 @@ exports.rescrapeMovie = function(id){
           var temp = data.results[0];
 
           temp['tmdb_id'] = temp.id;
-          //temp.filename = movie.filename;
-          //temp.date_added = (new Date()).toISOString();
           temp.popularity = Math.round(temp.popularity * 100) / 100;
 
-          request.post('http://localhost:3000/movies', {form: temp}, function(err, res, d){
-            console.log("Movie Created Successfully: ", JSON.parse(d).title);
+          exports.updateMovie(id, temp).then(function(data){
+            d.resolve(data);
+            console.log("Found: ", temp.title);
+          }).fail(function(err){
+            d.reject(err);
           });
-          console.log("Found: ", temp.title);
         } else {
           console.log("there were no results", res);
         }
