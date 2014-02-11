@@ -133,7 +133,7 @@ angular.module('lmdbApp', ['ngRoute'])
       }
       if(string === "rt"){
         string = function(a){
-          return a.ratings && a.ratings.critics_rating;
+          return a.ratings ? a.ratings.critics_score : 0;
         };
       }
       $scope.theOne = null;
