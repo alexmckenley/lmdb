@@ -7,24 +7,8 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
+var movieHelpers = require('./movieHelpers');
 var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/lmdb');
-
-var Movie = mongoose.model('Movie', {
-  adult: Boolean,
-  backdrop_path: String, //'/nPBDOLBPdBapuhcv4xXopHX9BAE.jpg',
-  tmdb_id: Number, //17654,
-  original_title: String, //'District 9',
-  release_date: Date, //'2009-08-14',
-  poster_path: String, //'/axFmCRNQsW6Bto8XuJKo08MPPV5.jpg',
-  popularity: Number, //6.08283452937599,
-  title: String, //'District 9',
-  vote_average: Number, //6.7,
-  vote_count: Number, //746 }
-  filename: String,
-  date_added: Date
-});
 
 var app = express();
 
@@ -42,40 +26,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 
 app.get('/movies', function(req, res){
-  Movie.find(function(err, data){
-    if(err){
-      console.log("Error:", err);
-    }
+  movieHelpers.getMovies().then(function(data){
     res.send(data);
+  }).fail(function(err){
+    res.send(500, { error: 'something blew up', data: err });
   });
 });
 
 app.post('/movies', function(req, res){
   // console.log(req.body);
-  var mov = new Movie(req.body);
-  mov.save(function(err){
-    if(err){
-      console.log("ERROR Saving Movie", err);
-    }
-    console.log("Created Movie Successfully: ", req.body.title);
+  movieHelpers.createMovie(req.body).then(function(movie){
+    res.send(movie);
+  }).fail(function(err){
+    res.send(500, { error: 'something blew up', data: err });
   });
-  res.send(req.body);
 });
 
 app.put('/movies/:id', function(req, res){
-  console.log(req.body);
-  var mov = Movie.findById(req.params.id, function(err, model){
-    if(err){
+  movieHelpers.updateMovie(req.params.id, req.body).then(function(movie){
+    res.send(movie);
+  }).fail(function(err){
+    res.send(500, { error: 'something blew up', data: err });
+  });
+});
 
-    } else {
-      model.filename = req.body.filename;
-      model.save(function(err){
-        if(err){
-          console.log("error saving model");
-        }
-        res.send(model);
-      });
-    }
+app.get('movies/:id/update', function(req, res){
+  movieHelpers.scrapeMovie(req.params.id).then(function(movie){
+    res.send(movie);
+  }).fail(function(err){
+    res.send(500, { error: 'something blew up', data: err });
   });
 });
 
