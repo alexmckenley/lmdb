@@ -21,7 +21,7 @@
     <div class="loading" ng-show="loading"> </div>
     <div ng-hide="loading"> 
       <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185{{movie.poster_path}}"></img>
-      
+
       <div class="movieInfo" ng-if="!edit">
         <p class="tagline"><i class="fa fa-quote-left"></i> <em>{{ details.tagline }}</em></p>
         <p class="releaseDate"><strong>Release Date:</strong> {{ movie.release_date | releaseDate }}</p>
@@ -40,6 +40,7 @@
           <ul class='trailers'>
             <li class='trailer' ng-repeat="trailer in details.trailers.youtube"><a href="http://youtube.com/watch?v={{trailer.source}}">{{trailer.name}} </a></li>
           </ul>
+        </p>
         <button class="editbutton" ng-click="toggleEdit()" >Edit</button>
       </div>
 
@@ -62,6 +63,11 @@
         <p><strong>Revenue:</strong> ${{ details.revenue }}</p>
         <p><strong>Filename:</strong> <input ng-model="movie.filename" type="text" class="infoEdit" value="{{ movie.filename }}"></input></p>
         <p><strong>Downloaded:</strong> {{ movie.date_added | releaseDate }}</p>
+        <p><strong>Trailers:</strong>
+          <ul class='trailers'>
+            <li class='trailer' ng-repeat="trailer in details.trailers.youtube"><a href="http://youtube.com/watch?v={{trailer.source}}">{{trailer.name}} </a></li>
+          </ul>
+        </p>
         <input type="submit" value="Update"></input>
       </form>
         <button class="editbutton" ng-click="toggleEdit()" >Cancel</button>
