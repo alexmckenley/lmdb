@@ -32,6 +32,8 @@ var next = function(){
 
             temp['tmdb_id'] = temp.id;
             temp.filename = params.query;
+            temp.date_added = (new Date()).toISOString();
+            temp.popularity = Math.round(temp.popularity * 100) / 100;
             request.post('http://localhost:3000/movies', {form: temp}, function(err, res, d){
               console.log("Movie Created Successfully: ", JSON.parse(d).title);
             });

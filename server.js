@@ -22,7 +22,8 @@ var Movie = mongoose.model('Movie', {
   title: String, //'District 9',
   vote_average: Number, //6.7,
   vote_count: Number, //746 }
-  filename: String
+  filename: String,
+  date_added: Date
 });
 
 var app = express();

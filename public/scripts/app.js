@@ -37,7 +37,13 @@ angular.module('lmdbApp', ['ngRoute'])
         method: 'GET',
         url: 'https://api.themoviedb.org/3/movie/' + id + '?api_key=2dec8cdc29fffb9f1f310dcce80fed41'
       });
+    };
 
+    this.updateMovie = function(movie){
+      return $http({
+        method: 'PUT',
+        url: '/movies/' + movie.tmdb.id
+      });
     };
   })
   .controller("FrameController", function($scope){
@@ -55,7 +61,7 @@ angular.module('lmdbApp', ['ngRoute'])
 
     $scope.setTheOne = function(movie){
       if ($scope.theOne === movie){
-        $scope.theOne = null;
+        // $scope.theOne = null;
         return;
       }
       console.log("ThE ONE", movie);
@@ -70,7 +76,37 @@ angular.module('lmdbApp', ['ngRoute'])
     $scope.order = function(string){
       if($scope.orderBy === string){
         $scope.reverse = !$scope.reverse;
+        return;
       }
+      $scope.theOne = null;
       $scope.orderBy = string;
     };
+
+    $scope.toggleEdit = function(){
+      $scope.edit = !$scope.edit;
+      console.log("EDIT: ", $scope.edit);
+    };
+
+    $scope.updateInfo = function(movie){
+      console.log("update Info");
+      // angular.extend(movie, $source.update);
+      // console.log(movie);
+    };
+
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

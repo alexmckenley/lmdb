@@ -4,24 +4,28 @@
   <span>Sort By: </span>
   <button ng-click="order('release_date')">Year</button>
   <button ng-click="order('popularity')" >Popularity</button>
-  <button ng-click="order('downloaded_date')" >Date Added</button>
+  <button ng-click="order('date_added')" >Date Added</button>
 </div>
 
 
 
 <!-- Display Each Movie -->
 <div class="movie clearfix" ng-repeat="movie in movies | filter:movieFilter | orderBy:orderBy:reverse" ng-click="setTheOne(movie)" ng-class="{theOne: movie === theOne}">
-  <p class="title">{{ movie.title }} <span class="year">({{ movie.release_date.substr(0,4) }})</span> </p>
+  <p class="title">{{ movie.title }} 
+    <span class="year">({{ movie.release_date.substr(0,4) }})</span> 
+    <span class="popularity">{{ movie.popularity }}<span>
+  </p>
+
 
   <div ng-if="theOne === movie" class="">
     <div ng-show="loading">Loading...</div>
     <div ng-hide="loading"> 
       <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185{{movie.poster_path}}"></img>
-      <div class="movieInfo">
+      <div class="movieInfo" ng-if="!edit">
         <p class="tagline"><i class="fa fa-quote-left"></i> <em>{{ details.tagline }}</em></p>
         <p class="releaseDate"><strong>Release Date:</strong> {{ movie.release_date | releaseDate }}</p>
         <p><strong>Summary:</strong> {{ details.overview }}</p>
-        <p><strong>Runtime:</strong> {{ details.runtime }} min</p>
+        <p><strong>Runtime:</strong> {{ details.runtime }} min </p>
         <p><strong>Genres:</strong> 
           <ul class="genres">
             <li class="genre" ng-repeat="genre in details.genres">{{ genre.name }} <li>
@@ -30,9 +34,35 @@
         <p><strong>Budget:</strong> ${{ details.budget }}</p>
         <p><strong>Revenue:</strong> ${{ details.revenue }}</p>
         <p><strong>Filename:</strong> {{ movie.filename }}</p>
-        <p><strong>Downloaded:</strong> {{ movie.date_added }}</p>
+        <p><strong>Downloaded:</strong> {{ movie.date_added | releaseDate }}</p>
+        <button class="editbutton" ng-click="toggleEdit()" >Edit</button>
       </div>
+
+      <div class="movieInfo" ng-if="edit">
+      <form ng-submit="updateInfo(movie)">
+        <p class="tagline"><i class="fa fa-quote-left"></i> <em>{{ details.tagline }}</em></p>
+        <!-- <i class="fa fa-quote-left tagline"></i><input ng-model="details.tagline" type="text" class="infoEdit tagline" ></input> -->
+        <p class="releaseDate"><strong>Release Date:</strong> {{ movie.release_date | releaseDate }}</p>
+        <p><strong>Summary:</strong> {{ details.overview }}</p>
+        <p><strong>Runtime:</strong> {{ details.runtime }} min </p>
+        <!--  <p><strong>Summary:</strong> <input  ng-model="details.overview" type="text" class="infoEdit" ></input></p>
+        <p><strong>Runtime:</strong> <input ng-model="details.runtime" type="text" class="infoEdit" ></input> min </p> -->
+        <p><strong>Genres:</strong> 
+          <ul class="genres">
+            <li class="genre" ng-repeat="genre in details.genres">{{ genre.name }} <li>
+          </ul>
+        </p>
+        <p><strong>Budget:</strong> ${{ details.budget }}</p>
+        <p><strong>Revenue:</strong> ${{ details.revenue }}</p>
+        <p><strong>Filename:</strong> <input ng-model="movie.filename" type="text" class="infoEdit" value="{{ movie.filename }}"></input></p>
+        <p><strong>Downloaded:</strong> {{ movie.date_added | releaseDate }}</p>
+        <input type="submit" value="Update"></input>
+      </form>
+        <button class="editbutton" ng-click="toggleEdit()" >Cancel</button>
+      </div>
+
+
+
     </div>
   </div>
-<!--   <span class="year">{{ movie.year }}</span> -->
 </div>
