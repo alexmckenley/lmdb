@@ -21,6 +21,7 @@
     <div ng-show="loading">Loading...</div>
     <div ng-hide="loading"> 
       <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185{{movie.poster_path}}"></img>
+      
       <div class="movieInfo" ng-if="!edit">
         <p class="tagline"><i class="fa fa-quote-left"></i> <em>{{ details.tagline }}</em></p>
         <p class="releaseDate"><strong>Release Date:</strong> {{ movie.release_date | releaseDate }}</p>
@@ -38,8 +39,9 @@
         <button class="editbutton" ng-click="toggleEdit()" >Edit</button>
       </div>
 
+
       <div class="movieInfo" ng-if="edit">
-      <form ng-submit="updateInfo(movie)">
+      <form ng-submit="updateInfo($index, movie)">
         <p class="tagline"><i class="fa fa-quote-left"></i> <em>{{ details.tagline }}</em></p>
         <!-- <i class="fa fa-quote-left tagline"></i><input ng-model="details.tagline" type="text" class="infoEdit tagline" ></input> -->
         <p class="releaseDate"><strong>Release Date:</strong> {{ movie.release_date | releaseDate }}</p>

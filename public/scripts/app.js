@@ -47,10 +47,10 @@ angular.module('lmdbApp', ['ngRoute'])
       });
     };
 
-    this.refreshMovieData = function(movie){
+    this.refreshMovieData = function(id){
       return $http({
         method: 'GET',
-        url: '/movies/' + movie._id + "/update/"
+        url: '/movies/' + id + "/update"
       });
     };
   })
@@ -95,9 +95,23 @@ angular.module('lmdbApp', ['ngRoute'])
       console.log("EDIT: ", $scope.edit);
     };
 
-    $scope.updateInfo = function(movie){
+    $scope.updateInfo = function($index, movie){
       MovieService.updateMovie(movie).success(function(data){
         console.log("successfully updated: ", data);
+        MovieService.refreshMovieData(data._id).success(function(updatedMovie){
+          console.log("Refreshed Movie Data");
+          angular.extend(movie, updatedMovie);
+          MovieService.getMovieDetails(movie.tmdb_id).success(function (info) {
+            angular.extend($scope.details, info);
+            $scope.loading = false;
+            $scope.edit = false;
+          }).error(function(err){
+            $scope.loading = false;
+            console.log(err);
+          });
+        });
+      }).error(function(err){
+        console.log("problem updating movie");
       });
     };
 

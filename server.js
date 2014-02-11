@@ -50,8 +50,8 @@ app.put('/movies/:id', function(req, res){
   });
 });
 
-app.get('movies/:id/update', function(req, res){
-  movieHelpers.scrapeMovie(req.params.id).then(function(movie){
+app.get('/movies/:id/update', function(req, res){
+  movieHelpers.rescrapeMovie(req.params.id).then(function(movie){
     res.send(movie);
   }).fail(function(err){
     res.send(500, { error: 'something blew up', data: err });

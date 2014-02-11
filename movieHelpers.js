@@ -122,6 +122,8 @@ exports.rescrapeMovie = function(id){
       }
     });
 
+  }).fail(function(err){
+    d.reject(err);
   });
 
 
