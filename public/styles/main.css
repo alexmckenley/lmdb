@@ -12,6 +12,7 @@
 
 .movie:hover{
   background-color: #ddffee;
+  cursor: pointer;
 }
 
 .movie .title{
@@ -44,6 +45,10 @@
 .theOne{
   background-color: #ddffee;
   /*background-color: #E0E0E0;*/
+}
+
+.movie.theOne:hover{
+  cursor: auto;
 }
 
 .popularity{
