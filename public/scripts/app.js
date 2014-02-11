@@ -47,13 +47,14 @@ angular.module('lmdbApp', ['ngRoute'])
 
     var spinner = new Spinner(opts);
 
-    this.spin = function(){
-      var target = document.getElementsByClassName('theOne')[0];
+    this.spin = function(target){
+      target = target || document.getElementsByClassName('theOne')[0];
+      console.log("TheOne: ", target);
       spinner.spin(target);
     };
 
-    this.stop = function(){
-      var target = document.getElementsByClassName('theOne')[0];
+    this.stop = function(target){
+      target = target || document.getElementsByClassName('theOne')[0];
       spinner.stop(target);
     };
   })
@@ -92,7 +93,7 @@ angular.module('lmdbApp', ['ngRoute'])
   .controller("FrameController", function($scope){
 
   })
-  .controller("MoviesController", function($scope, MovieService, SpinnerService){
+  .controller("MoviesController", function($scope, $timeout, MovieService, SpinnerService){
     $scope.theOne = null;
     $scope.reverse = false;
     $scope.orderBy = 'date_added';
@@ -107,15 +108,16 @@ angular.module('lmdbApp', ['ngRoute'])
         // $scope.theOne = null;
         return;
       }
-      SpinnerService.spin();
-      console.log("ThE ONE", movie);
       $scope.theOne = movie;
       $scope.loading = true;
+      $timeout(SpinnerService.spin, 0);
+
       MovieService.getMovieDetails(movie.tmdb_id).success(function (info) {
         $scope.details = info;
         $scope.loading = false;
         SpinnerService.stop();
       });
+
     };
 
     $scope.order = function(string){

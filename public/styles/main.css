@@ -93,6 +93,10 @@ input.infoEdit{
   width: 85%;
 }
 
+.loading{
+  height: 100px;
+}
+
 
 /*
 .genres ul li{

@@ -9,6 +9,7 @@ TODO:
 - [] Create worker to read all Movie names
 - [x] Implement movie store database
 - [] Change background image with movie splash
+- [x] Implement Spinner
 - [] Integrate with rottentomatoes API
-- [] Complete file updating/renaming
+- [x] Complete file updating/renaming
 - [] view trailer link
