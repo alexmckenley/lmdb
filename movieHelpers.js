@@ -6,7 +6,7 @@ var Q = require('q');
 
 var apiKey = "2dec8cdc29fffb9f1f310dcce80fed41";
 var path = "https://api.themoviedb.org/3/search/movie";
-params = {
+var params = {
   api_key: apiKey,
 };
 
@@ -79,19 +79,12 @@ exports.createMovie = function(movie){
 
 exports.updateMovie = function(id, movie){
   var d = Q.defer();
-  Movie.findById(id, function(err, model){
+  delete movie._id;
+  Movie.findByIdAndUpdate(id, movie, function(err, model){
     if(err){
       d.reject(err);
     } else {
-      model.filename = movie.filename;
-      model.save(function(err, m){
-        if(err){
-          d.reject(err);
-          console.log("error saving model");
-          return;
-        }
-        d.resolve(m);
-      });
+      d.resolve(model);
     }
   });
 
@@ -101,11 +94,33 @@ exports.updateMovie = function(id, movie){
 exports.rescrapeMovie = function(id){
   var d = Q.defer();
 
-  params.query = ;
-  url = path + "?" + qs.stringify(params);
-  console.log(url);
+  exports.getMovie(id).then(function(movie){
+    params.query = movie.filename;
+    var url = path + '?' + qs.stringify(params);
+    console.log(url);
 
-  request.get(url, function(err, res, data){
+    request.get(url, function(err, res, data){
+      if(err){
+        d.reject(err);
+      } else {
+        data = JSON.parse(data);
+        if(data.results && data.results.length >= 1){
+          var temp = data.results[0];
+
+          temp['tmdb_id'] = temp.id;
+          //temp.filename = movie.filename;
+          //temp.date_added = (new Date()).toISOString();
+          temp.popularity = Math.round(temp.popularity * 100) / 100;
+
+          request.post('http://localhost:3000/movies', {form: temp}, function(err, res, d){
+            console.log("Movie Created Successfully: ", JSON.parse(d).title);
+          });
+          console.log("Found: ", temp.title);
+        } else {
+          console.log("there were no results", res);
+        }
+      }
+    });
 
   });
 
