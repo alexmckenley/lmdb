@@ -71,7 +71,7 @@ angular.module('lmdbApp', ['ngRoute'])
     this.getMovieDetails = function(id){
       return $http({
         method: 'GET',
-        url: 'https://api.themoviedb.org/3/movie/' + id + '?api_key=2dec8cdc29fffb9f1f310dcce80fed41'
+        url: 'https://api.themoviedb.org/3/movie/' + id + '?api_key=2dec8cdc29fffb9f1f310dcce80fed41&append_to_response=trailers'
       });
     };
 

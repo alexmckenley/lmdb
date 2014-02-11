@@ -36,6 +36,10 @@
         <p><strong>Revenue:</strong> ${{ details.revenue }}</p>
         <p><strong>Filename:</strong> {{ movie.filename }}</p>
         <p><strong>Downloaded:</strong> {{ movie.date_added | releaseDate }}</p>
+        <p><strong>Trailers:</strong>
+          <ul class='trailers'>
+            <li class='trailer' ng-repeat="trailer in details.trailers.youtube"><a href="http://youtube.com/watch?v={{trailer.source}}">{{trailer.name}} </a></li>
+          </ul>
         <button class="editbutton" ng-click="toggleEdit()" >Edit</button>
       </div>
 

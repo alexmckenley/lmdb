@@ -97,6 +97,12 @@ input.infoEdit{
   height: 100px;
 }
 
+.trailers{
+  padding: 0;
+  list-style-type: none;
+}
+.genre{
+}
 
 /*
 .genres ul li{
