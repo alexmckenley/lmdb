@@ -25,7 +25,8 @@ var Movie = mongoose.model('Movie', {
   vote_average: Number, //6.7,
   vote_count: Number, //746 }
   filename: String,
-  date_added: Date
+  date_added: Date,
+  imdb_id: String
 });
 
 exports.getMovie = function(id){
