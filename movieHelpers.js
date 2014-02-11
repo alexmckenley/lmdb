@@ -72,7 +72,6 @@ exports.createMovie = function(movie){
     d.resolve(movie);
   });
 
-
   return d.promise;
 };
 
@@ -132,7 +131,23 @@ exports.rescrapeMovie = function(id){
 
 
 
+exports.getRotten = function(movie){
+  var d = Q.defer();
+  var params = qs.stringify({q: movie.title});
+  url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=grezzzwmedtqq494w3wzzurk&" + params;
 
+  request.get(url, function(err, res, data){
+    if(err){
+      d.reject(err);
+    } else {
+      JSON.parse(data);
+      movie.ratings = data && data.movies && data.movies[0].ratings;
+      d.resolve(movie);
+    }
+  });
+
+  return d.promise;
+};
 
 
 
