@@ -30,6 +30,14 @@
   margin-right: 10px;
 }
 
+.movieInfo{
+  padding-left: 205px;
+}
+
+.theOne{
+  background-color: #E0E0E0;
+}
+
 .navbar-brand{
   color: #669977;
 }
@@ -41,3 +49,13 @@
 .viewTitle{
   color: #669977;
 }
+
+#genres{
+display: inline;
+}
+
+
+/*
+.genres ul li{
+  display: inline;
+}*/

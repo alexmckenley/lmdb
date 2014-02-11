@@ -31,6 +31,14 @@ angular.module('lmdbApp', ['ngRoute'])
         url: '/movies'
       });
     };
+
+    this.getMovieDetails = function(id){
+      return $http({
+        method: 'GET',
+        url: 'https://api.themoviedb.org/3/movie/' + id + '?api_key=2dec8cdc29fffb9f1f310dcce80fed41'
+      });
+
+    };
   })
   .controller("FrameController", function($scope){
 
@@ -50,6 +58,11 @@ angular.module('lmdbApp', ['ngRoute'])
       }
       console.log("ThE ONE", movie);
       $scope.theOne = movie;
+      $scope.loading = true;
+      MovieService.getMovieDetails(movie.tmdb_id).success(function (info) {
+        $scope.details = info;
+        $scope.loading = false;
+      });
     };
 
   });

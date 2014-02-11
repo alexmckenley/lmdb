@@ -1,10 +1,26 @@
 <h2 class="viewTitle">Movies</h2>
 
-<div class="movie clearfix" ng-repeat="movie in movies" ng-click="setTheOne(movie)" >
+<div class="movie clearfix" ng-repeat="movie in movies" ng-click="setTheOne(movie)" ng-class="{theOne: movie === theOne}">
   <p class="title">{{ movie.title }} <span class="year">({{ movie.release_date.substr(0,4) }})</span> </p>
-  <div ng-if="theOne === movie">
-    <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185{{movie.poster_path}}"></img>
-    <p class="releaseDate">Release Date: {{ movie.release_date | releaseDate }}</p>
+
+  <div ng-if="theOne === movie" class="">
+    <div ng-show="loading">Loading...</div>
+    <div ng-hide="loading"> 
+      <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185{{movie.poster_path}}"></img>
+      <div class="movieInfo">
+        <p class="tagline">{{ details.tagline }}</p>
+        <p class="releaseDate">Release Date: {{ movie.release_date | releaseDate }}</p>
+        <p>Summary: {{ details.overview }}</p>
+        <p>Runtime: {{ details.runtime }} min</p>
+        <span id="genres">Genres: 
+          <ul class="list-inline">
+            <li ng-repeat="genre in details.genres">{{ genre.name }} <li>
+          </ul>
+        </span>
+      <p>Budget: ${{ details.budget }}</p>
+      <p>Revenue: ${{ details.revenue }}<p>
+      </div>
+    </div>
   </div>
 <!--   <span class="year">{{ movie.year }}</span> -->
 </div>
