@@ -39,7 +39,6 @@ var next = function(){
             temp.date_added = (new Date()).toISOString();
             temp.popularity = Math.round(temp.popularity * 100) / 100;
 
-
             request.get('https://api.themoviedb.org/3/movie/' + temp.tmdb_id + '?api_key=2dec8cdc29fffb9f1f310dcce80fed41', function(err, res, data){
               if(err){
                 console.log(err);
@@ -47,19 +46,12 @@ var next = function(){
               }
               data = JSON.parse(data);
               temp.imdb_id = data.imdb_id;
-              // console.dir(data);
 
               movieHelpers.createMovie(temp).then(function(data){
                 console.log("Successfully added ", data.title);
-                // console.dir(data);
               });
 
             });
-
-
-
-
-
           } else {
             console.log("there were no results", res);
           }
