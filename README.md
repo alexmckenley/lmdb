@@ -8,7 +8,7 @@ TODO:
 - [x] Create expanded movie view (on click)
 - [] Create worker to read all Movie names
 - [x] Implement movie store database
-- [] Change background image with movie splash
+- [x] Change background image with movie splash - implemented in feature branch
 - [x] Implement Spinner
 - [] Integrate with rottentomatoes API
 - [x] Complete file updating/renaming
