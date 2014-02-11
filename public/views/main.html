@@ -10,7 +10,7 @@
 
 
 <!-- Display Each Movie -->
-<div class="movie clearfix" ng-repeat="movie in movies | filter:movieFilter | orderBy:orderBy:reverse" ng-click="setTheOne(movie)" ng-class="{theOne: movie === theOne}">
+<div class="movie background clearfix" ng-repeat="movie in movies | filter:movieFilter | orderBy:orderBy:reverse" ng-click="setTheOne(movie)" ng-class="{theOne: movie === theOne}">
   <p class="title">{{ movie.title }} 
     <span class="year">({{ movie.release_date.substr(0,4) }})</span> 
     <span class="popularity">{{ movie.popularity }}<span>

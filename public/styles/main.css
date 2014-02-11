@@ -108,6 +108,22 @@ input.infoEdit{
   background: rgb(54, 25, 25);
   background: rgba(255,255,255, 1);
 }
+
+.test{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -3;
+
+
+  -webkit-transition: background-image 1s ease-in-out;
+-moz-transition: background-image 1s ease-in-out;
+-ms-transition: background-image 1s ease-in-out;
+-o-transition: background-image 1s ease-in-out;
+transition: background-image 1s ease-in-out;
+}
 /*
 .genres ul li{
   display: inline;

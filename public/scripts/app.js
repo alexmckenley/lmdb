@@ -100,13 +100,12 @@ angular.module('lmdbApp', ['ngRoute'])
 
   // Frame Controller
   .controller("FrameController", function($scope){
-    $scope.source = "/4iJfYYoQzZcONB9hNzg0J0wWyPH.jpg";
-
+    $scope.temp =
     $scope.setBackground = function(movie){
       movie = movie || {backdrop_path: ""};
       console.log("Setting Background");
-      angular.element(document.body).css({
-        'background-image': 'url(' + 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w1920' + movie.backdrop_path +')',
+      angular.element(document.body.children[0]).css({
+        'background-image': 'url(' + 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w780' + movie.backdrop_path +')',
         'background-size' : 'cover'
       });
     };
