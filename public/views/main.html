@@ -8,17 +8,17 @@
     <div ng-hide="loading"> 
       <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w185{{movie.poster_path}}"></img>
       <div class="movieInfo">
-        <p class="tagline">{{ details.tagline }}</p>
-        <p class="releaseDate">Release Date: {{ movie.release_date | releaseDate }}</p>
-        <p>Summary: {{ details.overview }}</p>
-        <p>Runtime: {{ details.runtime }} min</p>
-        <span id="genres">Genres: 
-          <ul class="list-inline">
-            <li ng-repeat="genre in details.genres">{{ genre.name }} <li>
+        <p class="tagline"><i class="fa fa-quote-left"></i> <em>{{ details.tagline }}</em></p>
+        <p class="releaseDate"><strong>Release Date:</strong> {{ movie.release_date | releaseDate }}</p>
+        <p><strong>Summary:</strong> {{ details.overview }}</p>
+        <p><strong>Runtime:</strong> {{ details.runtime }} min</p>
+        <p><strong>Genres:</strong> 
+          <ul class="genres">
+            <li class="genre" ng-repeat="genre in details.genres">{{ genre.name }} <li>
           </ul>
-        </span>
-      <p>Budget: ${{ details.budget }}</p>
-      <p>Revenue: ${{ details.revenue }}<p>
+        </p>
+      <p><strong>Budget:</strong> ${{ details.budget }}</p>
+      <p><strong>Revenue:</strong> ${{ details.revenue }}<p>
       </div>
     </div>
   </div>

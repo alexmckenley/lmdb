@@ -38,6 +38,11 @@
   background-color: #E0E0E0;
 }
 
+.tagline{
+  color: #669977;
+  font-size: 2em;
+}
+
 .navbar-brand{
   color: #669977;
 }
@@ -50,8 +55,20 @@
   color: #669977;
 }
 
-#genres{
-display: inline;
+.genres{
+  padding: 0;
+  list-style-type: none;
+}
+
+.genre{
+  display: inline;
+  background-color: #D0D0D0;
+  margin: 3px;
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
 }
 
 
