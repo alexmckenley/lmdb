@@ -3,7 +3,7 @@
   <input type="text" placeholder="Search Movies" ng-model="movieFilter.title">
   <span>Sort By: </span>
   <button ng-click="order('release_date')">Year</button>
-  <button ng-click="order('popularity')" >Popularity</button>
+  <button ng-click="order('rt')" >Rating</button>
   <button ng-click="order('date_added')" >Date Added</button>
 </div>
 
@@ -13,7 +13,7 @@
 <div class="movie clearfix" ng-repeat="movie in movies | filter:movieFilter | orderBy:orderBy:reverse" ng-click="setTheOne(movie)" ng-class="{theOne: movie === theOne}">
   <p class="title">{{ movie.title }} 
     <span class="year">({{ movie.release_date.substr(0,4) }})</span> 
-    <span class="popularity">{{ movie.popularity }}<span>
+    <span class="popularity" ng-if="movie.ratings">{{ movie.ratings.critics_score }}%<span>
   </p>
 
 
