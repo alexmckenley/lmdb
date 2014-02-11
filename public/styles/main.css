@@ -104,6 +104,10 @@ input.infoEdit{
 .genre{
 }
 
+.background{
+  background: rgb(54, 25, 25);
+  background: rgba(255,255,255, 1);
+}
 /*
 .genres ul li{
   display: inline;

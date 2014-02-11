@@ -12,15 +12,15 @@
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 
-<body ng-app='lmdbApp' ng-controller="FrameController">
+<body ng-app='lmdbApp' ng-controller="FrameController" back-img="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w1920{{source}}">
   <nav class="navbar" role="navigation">
-    <div class="container">
+    <div class="container background">
       <a class="navbar-brand" href="#">LMDB</a>
       <p class="navbar-text">The Local Movie Database</p>
       <button type="button" class="btn btn-default navbar-btn pull-right">Refresh List</button>
     </div>
   </nav>
-  <div class='container'>
+  <div class='container background'>
     <div ng-view></div>
   </div>
 </body>

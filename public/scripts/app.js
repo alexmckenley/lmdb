@@ -24,6 +24,13 @@ angular.module('lmdbApp', ['ngRoute'])
     };
   })
 
+  // back-img directive
+  .directive('backImg', function(){
+    return function(scope, element, attrs){
+      
+    };
+  })
+
   //SpinnerService
   .service("SpinnerService", function(){
     var opts = {
@@ -90,8 +97,19 @@ angular.module('lmdbApp', ['ngRoute'])
       });
     };
   })
-  .controller("FrameController", function($scope){
 
+  // Frame Controller
+  .controller("FrameController", function($scope){
+    $scope.source = "/4iJfYYoQzZcONB9hNzg0J0wWyPH.jpg";
+
+    $scope.setBackground = function(movie){
+      movie = movie || {backdrop_path: ""};
+      console.log("Setting Background");
+      angular.element(document.body).css({
+        'background-image': 'url(' + 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w1920' + movie.backdrop_path +')',
+        'background-size' : 'cover'
+      });
+    };
   })
   .controller("MoviesController", function($scope, $timeout, MovieService, SpinnerService){
     $scope.theOne = null;
@@ -111,10 +129,13 @@ angular.module('lmdbApp', ['ngRoute'])
       $scope.theOne = movie;
       $scope.loading = true;
       $timeout(SpinnerService.spin, 0);
+      $scope.setBackground(movie);
+
 
       MovieService.getMovieDetails(movie.tmdb_id).success(function (info) {
         $scope.details = info;
         $scope.loading = false;
+
         SpinnerService.stop();
       });
 
@@ -126,6 +147,7 @@ angular.module('lmdbApp', ['ngRoute'])
         return;
       }
       $scope.theOne = null;
+      $scope.setBackground();
       $scope.orderBy = string;
     };
 
