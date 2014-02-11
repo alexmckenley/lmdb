@@ -12,4 +12,4 @@ TODO:
 - [x] Implement Spinner
 - [] Integrate with rottentomatoes API
 - [x] Complete file updating/renaming
-- [] view trailer link
+- [x] view trailer link
