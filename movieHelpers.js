@@ -121,11 +121,15 @@ exports.rescrapeMovie = function(id){
           temp['tmdb_id'] = temp.id;
           temp.popularity = Math.round(temp.popularity * 100) / 100;
 
-          exports.updateMovie(id, temp).then(function(data){
-            d.resolve(data);
-            console.log("Found: ", temp.title);
-          }).fail(function(err){
-            d.reject(err);
+          exports.getRotten(temp).then(function(temp){
+
+            exports.updateMovie(id, temp).then(function(data){
+              d.resolve(data);
+              console.log("Found: ", temp.title);
+            }).fail(function(err){
+              d.reject(err);
+            });
+
           });
         } else {
           console.log("there were no results", res);
@@ -155,7 +159,7 @@ exports.getRotten = function(movie){
     } else {
       // data = JSON.parse(data.trim());
       movie.ratings = data && data.ratings;
-      console.dir(movie);
+      // console.dir(movie);
       d.resolve(movie);
     }
   });
