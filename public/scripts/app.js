@@ -45,6 +45,8 @@ angular.module('lmdbApp', ['ngRoute'])
   })
   .controller("MoviesController", function($scope, MovieService){
     $scope.theOne = null;
+    $scope.reverse = false;
+    $scope.orderBy = 'date_added';
 
     MovieService.getMovies().success(function(movies){
       $scope.movies = movies;
@@ -65,4 +67,10 @@ angular.module('lmdbApp', ['ngRoute'])
       });
     };
 
+    $scope.order = function(string){
+      if($scope.orderBy === string){
+        $scope.reverse = !$scope.reverse;
+      }
+      $scope.orderBy = string;
+    };
   });
