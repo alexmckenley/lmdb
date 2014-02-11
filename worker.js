@@ -1,5 +1,6 @@
 var request = require('request');
 var qs = require('querystring');
+var movieHelpers = require('./movieHelpers');
 
 
 var apiKey = "2dec8cdc29fffb9f1f310dcce80fed41";
@@ -37,10 +38,11 @@ var next = function(){
             temp.filename = params.query;
             temp.date_added = (new Date()).toISOString();
             temp.popularity = Math.round(temp.popularity * 100) / 100;
-            request.post('http://localhost:3000/movies', {form: temp}, function(err, res, d){
-              console.log("Movie Created Successfully: ", JSON.parse(d).title);
+
+            movieHelpers.createMovie(temp).then(function(data){
+              console.log("Successfully added ", data.title);
             });
-            console.log("Found: ", temp.title);
+
           } else {
             console.log("there were no results", res);
           }
