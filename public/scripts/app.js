@@ -24,6 +24,41 @@ angular.module('lmdbApp', ['ngRoute'])
     };
   })
 
+  //SpinnerService
+  .service("SpinnerService", function(){
+    var opts = {
+      lines: 13, // The number of lines to draw
+      length: 20, // The length of each line
+      width: 10, // The line thickness
+      radius: 30, // The radius of the inner circle
+      corners: 1, // Corner roundness (0..1)
+      rotate: 0, // The rotation offset
+      direction: 1, // 1: clockwise, -1: counterclockwise
+      color: '#000', // #rgb or #rrggbb or array of colors
+      speed: 1, // Rounds per second
+      trail: 60, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: false, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: 'auto', // Top position relative to parent in px
+      left: 'auto' // Left position relative to parent in px
+    };
+
+    var spinner = new Spinner(opts);
+
+    this.spin = function(){
+      var target = document.getElementsByClassName('theOne')[0];
+      spinner.spin(target);
+    };
+
+    this.stop = function(){
+      var target = document.getElementsByClassName('theOne')[0];
+      spinner.stop(target);
+    };
+  })
+
+  // Movie Service
   .service("MovieService", function($http){
     this.getMovies = function(){
       return $http({
@@ -57,7 +92,7 @@ angular.module('lmdbApp', ['ngRoute'])
   .controller("FrameController", function($scope){
 
   })
-  .controller("MoviesController", function($scope, MovieService){
+  .controller("MoviesController", function($scope, MovieService, SpinnerService){
     $scope.theOne = null;
     $scope.reverse = false;
     $scope.orderBy = 'date_added';
@@ -72,12 +107,14 @@ angular.module('lmdbApp', ['ngRoute'])
         // $scope.theOne = null;
         return;
       }
+      SpinnerService.spin();
       console.log("ThE ONE", movie);
       $scope.theOne = movie;
       $scope.loading = true;
       MovieService.getMovieDetails(movie.tmdb_id).success(function (info) {
         $scope.details = info;
         $scope.loading = false;
+        SpinnerService.stop();
       });
     };
 
@@ -96,6 +133,7 @@ angular.module('lmdbApp', ['ngRoute'])
     };
 
     $scope.updateInfo = function($index, movie){
+      SpinnerService.spin();
       MovieService.updateMovie(movie).success(function(data){
         console.log("successfully updated: ", data);
         MovieService.refreshMovieData(data._id).success(function(updatedMovie){
@@ -105,6 +143,7 @@ angular.module('lmdbApp', ['ngRoute'])
             angular.extend($scope.details, info);
             $scope.loading = false;
             $scope.edit = false;
+            SpinnerService.stop();
           }).error(function(err){
             $scope.loading = false;
             console.log(err);
