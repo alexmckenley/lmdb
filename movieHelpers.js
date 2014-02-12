@@ -25,7 +25,14 @@ var Movie = mongoose.model('Movie', {
   vote_average: Number, //6.7,
   vote_count: Number, //746 }
   filename: String,
-  date_added: Date
+  date_added: Date,
+  imdb_id: String,
+  ratings: 
+   { critics_rating: String,
+     critics_score: Number,
+     audience_rating: String,
+     audience_score: Number
+   }
 });
 
 exports.getMovie = function(id){
@@ -61,17 +68,20 @@ exports.getMovies = function() {
 exports.createMovie = function(movie){
   var d =  Q.defer();
 
-  var mov = new Movie(movie);
-  mov.save(function(err, movie){
-    if(err){
-      console.log("ERROR Saving Movie", err);
-      d.reject(err);
-      return;
-    }
-    console.log("Created Movie Successfully: ", movie.title);
-    d.resolve(movie);
-  });
+  exports.getRotten(movie).then(function(movie){
 
+
+    var mov = new Movie(movie);
+    mov.save(function(err, movie){
+      if(err){
+        console.log("ERROR Saving Movie", err);
+        d.reject(err);
+        return;
+      }
+      console.log("Created Movie Successfully: ", movie.title);
+      d.resolve(movie);
+    });
+  });
   return d.promise;
 };
 
@@ -106,14 +116,19 @@ exports.rescrapeMovie = function(id){
         if(data.results && data.results.length >= 1){
           var temp = data.results[0];
 
-          temp['tmdb_id'] = temp.id;
+          temp.tmdb_id = temp.id;
+          temp.imdb_id = temp.imdb_id || "123456";
           temp.popularity = Math.round(temp.popularity * 100) / 100;
 
-          exports.updateMovie(id, temp).then(function(data){
-            d.resolve(data);
-            console.log("Found: ", temp.title);
-          }).fail(function(err){
-            d.reject(err);
+
+          exports.getRotten(temp).then(function(temp){
+            exports.updateMovie(id, temp).then(function(data){
+              d.resolve(data);
+              console.log("Found: ", temp.title);
+            }).fail(function(err){
+              d.reject(err);
+            });
+
           });
         } else {
           console.log("there were no results", res);
@@ -133,15 +148,18 @@ exports.rescrapeMovie = function(id){
 
 exports.getRotten = function(movie){
   var d = Q.defer();
-  var params = qs.stringify({q: movie.title});
-  url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=grezzzwmedtqq494w3wzzurk&" + params;
 
-  request.get(url, function(err, res, data){
+  var params = qs.stringify({id: movie.imdb_id.slice(2)});
+  url = "http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey=grezzzwmedtqq494w3wzzurk&type=imdb&" + params;
+  console.log("fetching: ", url);
+  request({url: url, json: true, method: 'GET'},  function(err, res, data){
     if(err){
+      console.log(err);
       d.reject(err);
     } else {
-      JSON.parse(data);
-      movie.ratings = data && data.movies && data.movies[0].ratings;
+      movie.ratings = data && data.ratings;
+      // console.dir(movie);
+
       d.resolve(movie);
     }
   });

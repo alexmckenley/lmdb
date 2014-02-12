@@ -142,8 +142,19 @@ angular.module('lmdbApp', ['ngRoute'])
 
     $scope.order = function(string){
       if($scope.orderBy === string){
+        $scope.theOne = null;
         $scope.reverse = !$scope.reverse;
         return;
+      }
+      if(string === "rt" && typeof $scope.orderBy === 'function'){
+        $scope.reverse = !$scope.reverse;
+        $scope.theOne = null;
+        return;
+      }
+      if(string === "rt"){
+        string = function(a){
+          return a.ratings ? a.ratings.critics_score : 0;
+        };
       }
       $scope.theOne = null;
       $scope.setBackground();
