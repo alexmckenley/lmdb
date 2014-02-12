@@ -99,15 +99,36 @@ angular.module('lmdbApp', ['ngRoute'])
   })
 
   // Frame Controller
-  .controller("FrameController", function($scope){
-    $scope.temp =
+  .controller("FrameController", function($scope, $timeout){
+    $scope.background = false;
+    $scope.display = false;
+
     $scope.setBackground = function(movie){
+      if($scope.background === false && movie){
+        angular.element(document.body.children[1]).css({
+          'background-image': 'url(' + 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w780' + movie.backdrop_path +')',
+          'background-size' : 'cover'
+        });
+      }
+      $scope.background = movie ? true : false;
       movie = movie || {backdrop_path: ""};
+
       console.log("Setting Background");
       angular.element(document.body.children[0]).css({
         'background-image': 'url(' + 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w780' + movie.backdrop_path +')',
         'background-size' : 'cover'
       });
+      $timeout(function(){
+        angular.element(document.body.children[1]).css({
+          'background-image': 'url(' + 'http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w780' + movie.backdrop_path +')',
+          'background-size' : 'cover'
+        });
+        angular.element(document.body.children[0]).css({
+          'background-image': 'url(' + '' +')',
+          'background-size' : 'cover'
+        });
+
+      }, 1000);
     };
   })
   .controller("MoviesController", function($scope, $timeout, MovieService, SpinnerService){

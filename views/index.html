@@ -14,13 +14,16 @@
 </head>
 
 <body ng-app='lmdbApp' ng-controller="FrameController">
-  <div class="test">
+  <div class="test" ng-show="background && display">
+  </div>
+  <div class="test" ng-show="background && display">
   </div>
   <nav class="navbar" role="navigation">
     <div class="container background">
       <a class="navbar-brand" href="#">LMDB</a>
       <p class="navbar-text">The Local Movie Database</p>
-      <button type="button" class="btn btn-default navbar-btn pull-right">Refresh List</button>
+      <div class="pull-right"><span>Backdrop </span><input type="checkbox" name="display" ng-model="display"></input></div>
+<!--       <button type="button" class="btn btn-default navbar-btn pull-right">Toggle Backdrop</button> -->
     </div>
   </nav>
   <div class='container'>
