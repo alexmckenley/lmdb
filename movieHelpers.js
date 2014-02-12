@@ -118,11 +118,12 @@ exports.rescrapeMovie = function(id){
         if(data.results && data.results.length >= 1){
           var temp = data.results[0];
 
-          temp['tmdb_id'] = temp.id;
+          temp.tmdb_id = temp.id;
+          temp.imdb_id = temp.imdb_id || "123456";
           temp.popularity = Math.round(temp.popularity * 100) / 100;
 
-          exports.getRotten(temp).then(function(temp){
 
+          exports.getRotten(temp).then(function(temp){
             exports.updateMovie(id, temp).then(function(data){
               d.resolve(data);
               console.log("Found: ", temp.title);
@@ -157,7 +158,6 @@ exports.getRotten = function(movie){
       console.log(err);
       d.reject(err);
     } else {
-      // data = JSON.parse(data.trim());
       movie.ratings = data && data.ratings;
       // console.dir(movie);
       d.resolve(movie);
